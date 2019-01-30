@@ -22,7 +22,31 @@ def prefill_database(db_file):
     try:
         create_connection(db_file)
         #fills with the lyrics
+
     except Error as e:
         print(e)
     finally:
         conn.close()
+
+def create_db(db_file):
+    try:
+        conn = sqlite3.connect(db_file)
+        conn.execute("CREATE TABLE if NOT EXISTS Lyrics(Id INT, Name TEXT)")
+        conn.execute("INSERT INTO Lyrics Values(1, I am the very model of a modern Major General")
+        conn.execute("INSERT INTO Lyrics Values(2, I am the very model of an Animated Character")
+
+    except Error as e:
+        print(e)
+    finally:
+        conn.close()
+
+def destroy_db(db_file):
+    try:
+        conn = sqlite3.connect(db_file)
+        conn.execute("DELETE TABLE IF EXISTS Lyrics")
+    except Error as e:
+        print(e)
+    finally:
+        conn.close()
+
+
